@@ -1,0 +1,110 @@
+---
+title: "Project Proposal"
+author: "Jenita Jeyakumar; Student ID: 0789943; SECTION-002"
+
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### SECTION-1 INTRODUCTION:
+
+The data set used for this project is from Kaggle.com. It contains information about the placement status of students in a class. The variables include the percentage, board and/or stream of secondary school, higher secondary school, degree, and MBA, of male and female students. The data also contains Employability test scores and work experience status for all students and the salary of the placed students.
+
+#### [RESEARCH QUESTION:]{.smallcaps}
+
+As part of the main analysis of this data set, we will look into factors that determine whether or not a student gets placed.
+
+#### 
+
+```{r, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(readr)
+```
+
+```{r, echo = FALSE, message=FALSE}
+#IMPORTING THE DATASET
+placement <- read_csv("C:/Users/Jenita Jeyakumar/Desktop/DAB501/Data/Placement_Data_Full_Class.csv")
+```
+
+### SECTION-2 DATA ANALYSIS PLAN:
+
+-   The outcome or response variable (Y) is the "status" which is a categorical variable that gives info about the status of placement of the students. It has two values, either placed or not placed. It can also be treated as a binary variable since it has two values- placed and not placed.
+
+    The explanatory or predictor variables (X) could be any of the following :
+
+    1.  SSC or senior secondary school percentage
+
+    2.  HSC or higher secondary school percentage
+
+    3.  Degree percentage and specialization
+
+    4.  Employability test percentage
+
+    5.  MBA percentage and specialization
+
+    6.  Work experience
+
+-   The entire data set can be grouped using any of the following variables:
+
+    1.  Gender (Female and Male)
+
+    2.  Work experience (Yes and No)
+
+    3.  MBA specialization (Mkt&Fin and Mkt&HR)
+
+-   The preliminary analysis will include some basic univariate analysis.
+
+    Below gives the summary statistics for the dataset:
+
+    ```{r, echo = TRUE}
+    summary(placement)
+    ```
+
+    #### PRELIMINARY ANALYSIS:
+
+    -   Below is the distribution of students by HSC stream:
+
+    ```{r, echo = FALSE}
+    ggplot(placement, aes(hsc_s)) + geom_bar(fill = "cyan") + labs(title = "Distribution by HSC stream", x = "HSC Stream", y = "Count")
+    ```
+
+    -   Below is the distribution of students by Degree stream:
+
+    ```{r, echo = FALSE}
+    ggplot(placement, aes(degree_t)) + geom_bar(fill = "red") + labs(title = "Distribution by Degree stream", x = "Degree Stream", y = "Count")
+    ```
+
+    -   Below is the distribution of students by MBA specialization:
+
+    ```{r, echo = FALSE}
+    ggplot(placement, aes(specialisation)) + geom_bar(fill = "grey") + labs(title = "Distribution by MBA specialization", x = "MBA specialization", y = "Count")
+    ```
+
+    -   Below is the distribution of students by Gender:
+
+    ```{r, echo = FALSE}
+    ggplot(placement, aes(gender)) + geom_bar(fill = "blue") + labs(title = "Distribution by Gender", x = "Gender", y = "Count")
+    ```
+
+-   We will determine if Data cleaning and transformation steps are required and the same will be executed:
+
+    -   The summary shows that there are NA values in the 'salary' variable. These NA's correspond to the salary for students that are not placed, hence not making it necessary to clean the NA values because it makes sense to have them.
+
+-   We will check if there are outliers for the variable 'salary' in the data using a boxplot, and will see how to handle them.
+
+-   The statistical method 'Linear regression' can be used to determine relationship between various factors that lead to placement.
+
+### SECTION-3 DATA: 
+
+[**Data source:**]{.smallcaps} <https://www.kaggle.com/benroshan/factors-affecting-campus-placement>
+
+Taking a look at the data using the "**glimpse**" function:
+
+```{r, echo = TRUE}
+glimpse(placement)
+```
+
+##### --END--
